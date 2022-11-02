@@ -1,8 +1,3 @@
-/*
- * 2019-03-13   Programmer : 배
- * MCU : TM4C1294NCPDT
- */
-
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>

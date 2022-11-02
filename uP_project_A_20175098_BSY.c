@@ -1,11 +1,6 @@
 /*
- * 2019-03-13   Programmer : ±è À± ¼º
+ * 2019-03-13   Programmer : ë°°
  * MCU : TM4C1294NCPDT
- *
- * GPIO
- * ½ºÀ§Ä¡ È¸·Î
- * ÀÎÅÍ·´Æ® »ç¿ë X , Ç®¾÷½ºÀ§Ä¡ »ç¿ë, PortN °ú PortJ »ç¿ë
- *
  */
 
 #include <stdint.h>
@@ -36,7 +31,7 @@ double duty_ratio;
 const double LEFT = 0.99;
 const double RIGHT = 0.01;
 
-void ADCSeq0Handler(){                      // ¹«µåµî ÀÚµ¿¸ğµå ´ã´ç Á¶µµ¼¾¼­
+void ADCSeq0Handler(){                      // ë¬´ë“œë“± ìë™ëª¨ë“œ ë‹´ë‹¹ ì¡°ë„ì„¼ì„œ
 
     ADCSequenceDataGet(ADC0_BASE,0,ADC);
 
@@ -45,7 +40,7 @@ void ADCSeq0Handler(){                      // ¹«µåµî ÀÚµ¿¸ğµå ´ã´ç Á¶µµ¼¾¼­
     ADCIntClear(ADC0_BASE,0);
 }
 
-void ADCSeq1Handler(){                      // Ä¿Æ° ´ã´ç ¼Ò¸®¼¾¼­
+void ADCSeq1Handler(){                      // ì»¤íŠ¼ ë‹´ë‹¹ ì†Œë¦¬ì„¼ì„œ
 
     ADCSequenceDataGet(ADC0_BASE,1,ADC);
 
@@ -54,7 +49,7 @@ void ADCSeq1Handler(){                      // Ä¿Æ° ´ã´ç ¼Ò¸®¼¾¼­
     ADCIntClear(ADC0_BASE,1);
 }
 
-void ADCSeq2Handler(){                      // Ä§´ë¿¡ »ç¶÷ÀÖ´Â°¡¿¡ ´ëÇÑ ¿©ºÎ ÆÇº° Á¶µµ¼¾¼­
+void ADCSeq2Handler(){                      // ì¹¨ëŒ€ì— ì‚¬ëŒìˆëŠ”ê°€ì— ëŒ€í•œ ì—¬ë¶€ íŒë³„ ì¡°ë„ì„¼ì„œ
 
     ADCSequenceDataGet(ADC0_BASE,2,ADC);
 
@@ -63,7 +58,7 @@ void ADCSeq2Handler(){                      // Ä§´ë¿¡ »ç¶÷ÀÖ´Â°¡¿¡ ´ëÇÑ ¿©ºÎ ÆÇº
     ADCIntClear(ADC0_BASE,2);
 }
 
-void ADC1Seq0Handler(){                      // ¹ÛÀÌ ¹àÀºÁö ¾îµÎ¿îÁö ¿©ºÎ ÆÇº° Á¶µµ¼¾¼­
+void ADC1Seq0Handler(){                      // ë°–ì´ ë°ì€ì§€ ì–´ë‘ìš´ì§€ ì—¬ë¶€ íŒë³„ ì¡°ë„ì„¼ì„œ
 
     ADCSequenceDataGet(ADC1_BASE,0,ADC);
 
@@ -241,10 +236,10 @@ void checkLightOnOff(){
 
 void checkLightAuto(){
 
-    if(GPIOPinRead(GPIO_PORTJ_BASE,GPIO_PIN_0)==0)         // ¹«µåµî ¼öµ¿ ¸ğµå
+    if(GPIOPinRead(GPIO_PORTJ_BASE,GPIO_PIN_0)==0)         // ë¬´ë“œë“± ìˆ˜ë™ ëª¨ë“œ
         isAuto = false;
     else {
-        isAuto = true;                                      // ¹«µåµî ÀÚµ¿ ¸ğµå
+        isAuto = true;                                      // ë¬´ë“œë“± ìë™ ëª¨ë“œ
 
         ADCIntEnable(ADC0_BASE, 0);
 
@@ -331,131 +326,131 @@ void Buzzer(){
 
         PWMOutputState(PWM0_BASE, PWM_OUT_0_BIT, true);
 
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //ì†”
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //ì†”
         for(i=0;i<700000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<700000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<2000000;i++);
 
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //·¹
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //ë ˆ
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<700000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<700000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //·¹
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //ë ˆ
         for(i=0;i<2000000;i++);
 
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //·¹
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //ë ˆ
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //·¹
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //ë ˆ
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<1000000;i++);
 
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //ì†”
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 880); //¶ó
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 880); //ë¼
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //ì†”
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //·¹
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //ë ˆ
         for(i=0;i<400000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<400000;i++);
         PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 500000000000); // x
         for(i=0;i<550000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<400000;i++);
         PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 500000000000); // X
         for(i=0;i<550000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<1200000;i++);
 
 /*
-//        ·¹µµ(½Ã)µµ(½Ã)(¶ó)(¼Ö)(¶ó)(½Ã)¼Ö¼Ö¼ÖÆÄ¼Ö¶óµµ¼Ö
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //·¹
+//        ë ˆë„(ì‹œ)ë„(ì‹œ)(ë¼)(ì†”)(ë¼)(ì‹œ)ì†”ì†”ì†”íŒŒì†”ë¼ë„ì†”
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //ë ˆ
         for(i=0;i<1000000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 523); //µµ
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 523); //ë„
         for(i=0;i<1000000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 493); //³·Àº½Ã
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 493); //ë‚®ì€ì‹œ
         for(i=0;i<500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 523); //µµ
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 523); //ë„
         for(i=0;i<500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 493); //³·Àº½Ã
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 493); //ë‚®ì€ì‹œ
         for(i=0;i<500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 440); //³·Àº¶ó
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 440); //ë‚®ì€ë¼
         for(i=0;i<500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 391); //³·Àº¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 391); //ë‚®ì€ì†”
         for(i=0;i<1000000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 440); //³·Àº¶ó
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 440); //ë‚®ì€ë¼
         for(i=0;i<1000000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 493); //³·Àº½Ã
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 493); //ë‚®ì€ì‹œ
         for(i=0;i<1200000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //ì†”
         for(i=0;i<1000000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //ì†”
         for(i=0;i<500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //ì†”
         for(i=0;i<500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //ì†”
         for(i=0;i<500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 880); //¶ó
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 880); //ë¼
         for(i=0;i<800000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //ì†”
         for(i=0;i<1000000;i++);
 */
         /*
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 523); //µµ
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 523); //ë„
         for(i=0;i<1500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //·¹
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 587); //ë ˆ
         for(i=0;i<1500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //¹Ì
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 659); //ë¯¸
         for(i=0;i<1500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 698); //ÆÄ
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 698); //íŒŒ
         for(i=0;i<1500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //ÆÄ#
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 739); //íŒŒ#
         for(i=0;i<1500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //¼Ö
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 783); //ì†”
         for(i=0;i<1500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 880); //¶ó
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 880); //ë¼
         for(i=0;i<1500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 987); //½Ã
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 987); //ì‹œ
         for(i=0;i<1500000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 1046); //µµ
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 1046); //ë„
         for(i=0;i<1500000;i++);*/
 
         PWMOutputState(PWM0_BASE, PWM_OUT_0_BIT, false);
@@ -464,15 +459,15 @@ void Buzzer(){
     if(isMwFinish){
         PWMOutputState(PWM0_BASE, PWM_OUT_0_BIT, true);
 
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 1046); //µµ
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 1046); //ë„
         for(i=0;i<600000;i++);
         PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 500000000000); // x
         for(i=0;i<550000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 1046); //µµ
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 1046); //ë„
         for(i=0;i<600000;i++);
         PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 500000000000); // X
         for(i=0;i<550000;i++);
-        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 1046); //µµ
+        PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ui32SysClock / 1046); //ë„
         for(i=0;i<1200000;i++);
 
         PWMOutputState(PWM0_BASE, PWM_OUT_0_BIT, false);
@@ -527,18 +522,18 @@ int main(void) {
 
     while(1){
 
-        // Çö°ü¹® ¼¾¼­µî ±¸Çö
+        // í˜„ê´€ë¬¸ ì„¼ì„œë“± êµ¬í˜„
         checkFrontDoorLamp();
 
-        // ¹«µåµî ±¸Çö
+        // ë¬´ë“œë“± êµ¬í˜„
         checkLightOnOff();
 
-        if(isLightOn){                  // ¹«µåµî Àü¿ø on/off ÆÇº°
-            checkLightAuto();           // ÀÚµ¿ ¸ğµåÀÎÁö ¼öµ¿ ¸ğµåÀÎÁö ÆÇº°
-            if(!isAuto)                 // ¼öµ¿ ¸ğµå
+        if(isLightOn){                  // ë¬´ë“œë“± ì „ì› on/off íŒë³„
+            checkLightAuto();           // ìë™ ëª¨ë“œì¸ì§€ ìˆ˜ë™ ëª¨ë“œì¸ì§€ íŒë³„
+            if(!isAuto)                 // ìˆ˜ë™ ëª¨ë“œ
                 lightOn();
-            else {                      // ÀÚµ¿ ¸ğµå
-                if(light > 1000)        // ¾îµÎ¿öÁö¸é ºÒ ÄÔ
+            else {                      // ìë™ ëª¨ë“œ
+                if(light > 1000)        // ì–´ë‘ì›Œì§€ë©´ ë¶ˆ ì¼¬
                     lightOn();
                 else
                     lightOff();
@@ -547,27 +542,27 @@ int main(void) {
         else
             lightOff();
 
-        // ÀÚµ¿ Ä¿Æ° ±¸Çö
-        checkCurtainOnOff();        // Ä¿Æ° Àü¿ø
+        // ìë™ ì»¤íŠ¼ êµ¬í˜„
+        checkCurtainOnOff();        // ì»¤íŠ¼ ì „ì›
 
         if(isCurtainOn){
-            if(sound > 1500){       // ÀÏÁ¤ ¼Ò¸® ÀÌ»ó(ex. ¹Ú¼ö¼Ò¸®)ÀÇ ÁÖÆÄ¼ö¸¦ ³¾ ¶§ Ä¿Æ° ¿òÁ÷ÀÓ
+            if(sound > 1500){       // ì¼ì • ì†Œë¦¬ ì´ìƒ(ex. ë°•ìˆ˜ì†Œë¦¬)ì˜ ì£¼íŒŒìˆ˜ë¥¼ ë‚¼ ë•Œ ì»¤íŠ¼ ì›€ì§ì„
                 CurtainMove();
             }
         }
 
-        // ¸ğ´×Äİ ±¸Çö
-        checkMorningCallOnOff();    // ¸ğ´×Äİ Àü¿ø
+        // ëª¨ë‹ì½œ êµ¬í˜„
+        checkMorningCallOnOff();    // ëª¨ë‹ì½œ ì „ì›
 
         if(isMorningCallOn){
-            if(outside < 1000 && sleep > 1500){      // ¾ÆÄ§ÀÎµ¥ ÀÚ°í ÀÖÀ» ¶§ ¸ğ´×Äİ ÄÔ
+            if(outside < 1000 && sleep > 1500){      // ì•„ì¹¨ì¸ë° ìê³  ìˆì„ ë•Œ ëª¨ë‹ì½œ ì¼¬
                 buzzer_on=true;
                 Buzzer();
                 buzzer_on=false;
             }
         }
 
-        // ÀüÀÚ·¹ÀÎÁö ±¸Çö
+        // ì „ìë ˆì¸ì§€ êµ¬í˜„
         microwaveOn();
     }
 }
